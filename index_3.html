@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 카카오톡 링크 미리보기 설정 -->
+  <title>🎀 안해인 돌잔치 행운의 추첨</title>
+  <meta name="description" content="소중한 자리에 와주셔서 감사해요 🌸 추첨에 참여하시려면 이름을 남겨주세요!">
+  <meta property="og:title" content="🎀 안해인 돌잔치 행운의 추첨">
+  <meta property="og:description" content="소중한 자리에 와주셔서 감사해요 🌸 추첨에 참여하시려면 이름을 남겨주세요!">
+  <meta property="og:image" content="https://ted5882.github.io/doljjanchi/haein.jpg">
+  <meta property="og:type" content="website">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background: #fff0f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    /* 배경 꽃잎 */
+    .bg-petals {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .petal {
+      position: absolute;
+      font-size: 22px;
+      opacity: 0.18;
+      animation: drift linear infinite;
+    }
+
+    @keyframes drift {
+      0%   { transform: translateY(-40px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.18; }
+      90%  { opacity: 0.18; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* 카드 */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 380px;
+      margin: 2rem 1rem;
+      background: #ffffff;
+      border-radius: 32px;
+      overflow: hidden;
+      box-shadow: 0 8px 48px #f0a0c033;
+    }
+
+    /* 상단 헤더 */
+    .header {
+      background: linear-gradient(160deg, #ffe4ee 0%, #ffc8df 100%);
+      padding: 2.5rem 1.5rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .header-petals span {
+      position: absolute;
+      font-size: 20px;
+      opacity: 0.4;
+    }
+
+    .avatar-wrap {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px dashed #f0a0c0;
+      padding: 4px;
+      margin: 0 auto 1rem;
+      background: #fff8fb;
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .avatar-fallback {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #fce8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+
+    .flowers {
+      font-size: 18px;
+      letter-spacing: 6px;
+      margin-bottom: 6px;
+    }
+
+    .event-label {
+      font-size: 12px;
+      color: #c06080;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .event-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: #a03060;
+      margin-bottom: 6px;
+    }
+
+    .event-sub {
+      font-size: 13px;
+      color: #c08090;
+      line-height: 1.6;
+    }
+
+    /* 바디 */
+    .body {
+      padding: 2rem 1.5rem;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff0f6;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border: 1px solid #f4c8dc;
+    }
+
+    .info-icon { font-size: 18px; }
+
+    .info-text {
+      font-size: 13px;
+      color: #a04060;
+      line-height: 1.5;
+    }
+
+    .info-text b {
+      font-weight: 700;
+      color: #8a2050;
+      display: block;
+      font-size: 14px;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #f0b8d0, transparent);
+      margin: 1.5rem 0;
+    }
+
+    /* 버튼 */
+    .btn-join {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #e8608c, #c8406c);
+      color: #fff;
+      border: none;
+      border-radius: 16px;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: 'Noto Sans KR', sans-serif;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 6px 24px #e8608c44;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-join:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px #e8608c55;
+    }
+
+    .btn-join:active {
+      transform: scale(0.98);
+    }
+
+    .btn-sub {
+      display: block;
+      text-align: center;
+      margin-top: 12px;
+      font-size: 12px;
+      color: #c090a8;
+    }
+
+    /* 푸터 */
+    .footer {
+      background: #fff8fb;
+      border-top: 1px solid #f4c8dc;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      font-size: 11px;
+      color: #d0a0b8;
+    }
+
+    /* 반짝이 효과 */
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+      50% { transform: scale(1.2) rotate(10deg); opacity: 0.7; }
+    }
+
+    .bow { display: inline-block; animation: sparkle 2s ease-in-out infinite; }
+  </style>
+</head>
+<body>
+
+  <!-- 배경 꽃잎 -->
+  <div class="bg-petals" id="petals"></div>
+
+  <div class="card">
+    <!-- 헤더 -->
+    <div class="header">
+      <div class="header-petals">
+        <span style="top:14px;left:18px;">🌸</span>
+        <span style="top:22px;right:22px;">🌸</span>
+        <span style="bottom:18px;left:28px;">🌸</span>
+        <span style="bottom:14px;right:26px;">🌸</span>
+      </div>
+
+      <div class="avatar-wrap">
+        <img src="haein.jpg" alt="안해인">
+      </div>
+
+      <div class="flowers">🌸 🌸 🌸</div>
+      <div class="event-label">안해인 돌잔치</div>
+      <div class="event-title">행운의 추첨 <span class="bow">🎀</span></div>
+      <div class="event-sub">소중한 자리에 와주셔서 감사해요<br>추첨에 참여해 행운을 잡아보세요!</div>
+    </div>
+
+    <!-- 바디 -->
+    <div class="body">
+      <div class="info-row">
+        <span class="info-icon">🎁</span>
+        <div class="info-text">
+          <b>추첨 이벤트 참여 방법</b>
+          이름과 연락처 뒷자리를 입력하시면<br>행사 중 추첨을 통해 선물을 드려요!
+        </div>
+      </div>
+
+      <div class="info-row">
+        <span class="info-icon">📝</span>
+        <div class="info-text">
+          <b>입력 항목</b>
+          이름 (필수) · 연락처 뒷자리 (선택)
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <a href="https://bit.ly/480ASC4" class="btn-join">
+        🎈 추첨 참가하기
+      </a>
+      <span class="btn-sub">버튼을 누르면 참가 신청 양식으로 이동해요</span>
+    </div>
+
+    <div class="footer">
+      🌸 안해인 돌잔치에 함께해 주셔서 감사합니다 🌸
+    </div>
+  </div>
+
+  <script>
+    const emojis = ['🌸', '🌸', '🌸', '🌺', '🌷'];
+    const container = document.getElementById('petals');
+    for (let i = 0; i < 14; i++) {
+      const el = document.createElement('div');
+      el.className = 'petal';
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (14 + Math.random() * 14) + 'px';
+      const dur = 8 + Math.random() * 10;
+      el.style.animationDuration = dur + 's';
+      el.style.animationDelay = -(Math.random() * dur) + 's';
+      container.appendChild(el);
+    }
+  </script>
+
+</body>
+</html>
